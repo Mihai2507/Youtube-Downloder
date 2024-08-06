@@ -7,15 +7,18 @@ def download(link, path, resolution):
     try:
         yt = YouTube(link)
 
+        # Download video
         video_stream = yt.streams.filter(res=resolution).first()
-        video_path = os.path.join(path)
-        video_stream.download(output_path=path)
+        video_path = os.path.join(path, f"{yt.title}")
+        video_stream.download(output_path=path, filename=f"{yt.title}")
 
+        # Download audio
         audio_stream = yt.streams.filter(only_audio=True).first()
-        audio_path = os.path.join(path)
-        audio_stream.download(output_path=path)
+        audio_path = os.path.join(path, f"{yt.title}_audio.mp4")
+        audio_stream.download(output_path=path, filename=f"{yt.title}")
 
-        merge(video_path, audio_path, os.path.join(path, yt.title))
+        # Merge video and audio
+        merge(video_path, audio_path, os.path.join(path, f"{yt.title}"))
 
     except Exception as e:
         print(f"ERROR: {e}")
