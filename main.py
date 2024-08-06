@@ -8,12 +8,12 @@ def download(link, path, resolution):
         yt = YouTube(link)
 
         video_stream = yt.streams.filter(res=resolution).first()
-        video_path = os.path.join(path, "video.mp4")
-        video_stream.download(output_path=path, filename="video.mp4")
+        video_path = os.path.join(path)
+        video_stream.download(output_path=path)
 
         audio_stream = yt.streams.filter(only_audio=True).first()
-        audio_path = os.path.join(path, "audio.mp4")
-        audio_stream.download(output_path=path, filename="audio.mp4")
+        audio_path = os.path.join(path)
+        audio_stream.download(output_path=path)
 
         merge(video_path, audio_path, os.path.join(path, yt.title))
 
