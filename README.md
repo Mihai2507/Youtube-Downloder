@@ -7,4 +7,4 @@ The YouTube Downloader is a tool designed to download videos from YouTube in var
 
 # Technologies Used 🛠️
  - Programming Language: Python
- - Libraries: Pytube
+ - Libraries: Pytube, Moviepyeditor
